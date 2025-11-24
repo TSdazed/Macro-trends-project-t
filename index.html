@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Macro Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Macro Dashboard</h1>
+    <p>TS custom economic indicators</p>
+  </header>
+
+  <main>
+    <section class="carousel">
+      <!-- top nav to switch “cards” -->
+      <div class="carousel-nav">
+        <button class="carousel-nav-btn nav-active" data-slide="0">
+          Selected Indicator
+        </button>
+        <button class="carousel-nav-btn" data-slide="1">
+          Unemployment vs Fed Funds
+        </button>
+        <button class="carousel-nav-btn" data-slide="2">
+          Loan Delinquency Rates
+        </button>
+      </div>
+
+      <div class="chart-stage">
+        <!-- Slide 0: main indicator chart -->
+        <article class="chart-slide slide-0">
+          <div class="chart-header">
+            <h2 class="chart-title">Selected Indicator (FRED)</h2>
+
+            <div class="controls-inline">
+              <label for="indicator-select">Indicator:</label>
+              <select id="indicator-select">
+                <option value="unemployment">Unemployment Rate</option>
+                <option value="fed_funds">Fed Funds Rate</option>
+                <option value="cpi">CPI (All Urban Consumers)</option>
+                <option value="m2">M2 Money Stock</option>
+              </select>
+
+              <div class="range-group" data-target="main">
+                <button class="range-btn range-btn-active" data-range="12">1Y</button>
+                <button class="range-btn" data-range="24">2Y</button>
+                <button class="range-btn" data-range="60">5Y</button>
+                <button class="range-btn" data-range="120">10Y</button>
+                <button class="range-btn" data-range="max">Max</button>
+              </div>
+            </div>
+          </div>
+
+          <canvas id="indicatorChart"></canvas>
+        </article>
+
+        <!-- Slide 1: comparison chart -->
+        <article class="chart-slide slide-1">
+          <div class="chart-header">
+            <h2 class="chart-title">Unemployment vs Fed Funds (FRED)</h2>
+
+            <div class="range-group" data-target="comparison">
+              <button class="range-btn range-btn-active" data-range="12">1Y</button>
+              <button class="range-btn" data-range="24">2Y</button>
+              <button class="range-btn" data-range="60">5Y</button>
+              <button class="range-btn" data-range="120">10Y</button>
+              <button class="range-btn" data-range="max">Max</button>
+            </div>
+          </div>
+
+          <canvas id="comparisonChart"></canvas>
+        </article>
+
+        <!-- Slide 2: delinquency chart -->
+        <article class="chart-slide slide-2">
+          <div class="chart-header">
+            <h2 class="chart-title">Loan Delinquency Rates (FRED)</h2>
+
+            <div class="range-group" data-target="delinquency">
+              <button class="range-btn range-btn-active" data-range="12">1Y</button>
+              <button class="range-btn" data-range="24">2Y</button>
+              <button class="range-btn" data-range="60">5Y</button>
+              <button class="range-btn" data-range="120">10Y</button>
+              <button class="range-btn" data-range="max">Max</button>
+            </div>
+          </div>
+
+          <canvas id="loanDefaultChart"></canvas>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

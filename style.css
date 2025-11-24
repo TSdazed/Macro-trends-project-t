@@ -1,0 +1,228 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #111827 0, #020617 40%, #020617 100%);
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+  padding: 1.25rem 2rem 0.75rem;
+  border-bottom: 1px solid #111827;
+  background: rgba(2, 6, 23, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+header h1 {
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+header p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+/* LAYOUT */
+
+main {
+  padding: 1.5rem 2rem 3rem;
+}
+
+/* CAROUSEL SHELL */
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.carousel-nav {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.25rem;
+  background: #020617;
+  border-radius: 999px;
+  border: 1px solid #111827;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-nav-btn {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.carousel-nav-btn.nav-active {
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* CARD STAGE */
+
+.chart-stage {
+  position: relative;
+  height: 560px; /* adjust if you want more/less tall cards */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.chart-slide {
+  position: absolute;
+  width: 100%;
+  max-width: 1100px;
+  background: #020617;
+  border-radius: 18px;
+  border: 1px solid #111827;
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.65);
+  padding: 1.1rem 1.4rem 1.5rem;
+  opacity: 0;
+  transform: translateX(-160px); /* no scale on base */
+  transition: transform 0.35s ease, opacity 0.35s ease,
+    box-shadow 0.35s ease;
+  cursor: pointer;
+  /* 🔴 remove pointer-events: none here */
+}
+
+.chart-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 3;
+  cursor: default;
+}
+
+.chart-slide.stacked-1 {
+  opacity: 0.85;
+  transform: translateX(130px); /* no scale */
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.chart-slide.stacked-2 {
+  opacity: 0.6;
+  transform: translateX(240px); /* no scale */
+  pointer-events: auto;
+  z-index: 1;
+}
+
+
+.chart-slide.hidden-left {
+  opacity: 0;
+  transform: translateX(-160px);
+  pointer-events: none;      /* only hidden ones ignore clicks */
+  z-index: 0;
+}
+
+
+
+/* CHART HEADER + CONTROLS */
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.chart-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.controls-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+#indicator-select {
+  background: #020617;
+  border-radius: 999px;
+  border: 1px solid #1f2937;
+  padding: 0.28rem 0.85rem;
+  color: #e5e7eb;
+  font-size: 0.82rem;
+  outline: none;
+}
+
+#indicator-select:focus {
+  border-color: #2563eb;
+}
+
+/* RANGE BUTTONS */
+
+.range-group {
+  display: inline-flex;
+  gap: 0.3rem;
+  background: #020617;
+  border-radius: 999px;
+  padding: 0.18rem;
+  border: 1px solid #111827;
+}
+
+.range-btn {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.range-btn.range-btn-active {
+  background: #2563eb;
+  color: #f9fafb;
+}
+
+/* CANVAS */
+
+canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;  /* let Chart.js control height */
+}
+
+
+/* SCROLLBAR (optional aesthetic) */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111827;
+  border-radius: 999px;
+}
